@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CaptionAI — AI Captions for Creators</title>
+<meta name="description" content="Generate Instagram captions, hashtags, hooks and CTAs with CaptionAI.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07070b;--card:#111119;--card2:#171721;--text:#f7f7fb;--muted:#a5a5b4;--line:#292936;--accent:#9b5cff;--accent2:#ff4ecd}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 20% 0%,#241344 0,transparent 32%),radial-gradient(circle at 90% 15%,#35112f 0,transparent 28%),var(--bg);color:var(--text);min-height:100vh}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
+.logo{font-size:24px;font-weight:900;letter-spacing:-1px}.logo span{color:#b979ff}
+.navlinks{display:flex;gap:26px;color:#c6c6d0;font-size:14px}
+.navbtn{padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:#14141d}
+.hero{text-align:center;padding:86px 0 45px}
+.badge{display:inline-flex;padding:8px 13px;border:1px solid #3a2c52;border-radius:999px;color:#d7baff;background:#120d1c;font-size:13px;margin-bottom:22px}
+h1{font-size:clamp(42px,7vw,78px);line-height:.98;letter-spacing:-4px;max-width:850px;margin:auto}
+.gradient{background:linear-gradient(90deg,#fff,#c58aff,#ff71d5);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:650px;margin:24px auto;color:var(--muted);font-size:18px;line-height:1.6}
+.cta{display:inline-flex;gap:8px;align-items:center;padding:14px 22px;border:0;border-radius:14px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;font-weight:800;cursor:pointer;box-shadow:0 12px 35px #8d42d933}
+.tool{margin:28px auto 80px;background:rgba(17,17,25,.88);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 25px 80px #0008;backdrop-filter:blur(15px)}
+.grid{display:grid;grid-template-columns:1.4fr .6fr;gap:18px}
+label{display:block;font-size:13px;color:#bcbcca;margin-bottom:8px}
+textarea,select,input{width:100%;background:#0b0b11;border:1px solid var(--line);color:white;border-radius:13px;padding:14px;outline:none}
+textarea{height:145px;resize:vertical;font-size:15px}
+select{cursor:pointer}
+.controls{display:grid;gap:14px}
+.generate{width:100%;margin-top:18px;padding:15px;border:0;border-radius:13px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:900;font-size:15px;cursor:pointer}
+.results{margin-top:24px;display:grid;gap:12px}
+.result{background:#0b0b11;border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;line-height:1.55;color:#eee}
+.copy{position:absolute;right:12px;top:12px;border:1px solid var(--line);background:#171720;color:#ddd;border-radius:9px;padding:7px 10px;cursor:pointer;font-size:12px}
+.section{padding:25px 0 80px}.section h2{text-align:center;font-size:36px;letter-spacing:-1.5px;margin-bottom:10px}.section>p{text-align:center;color:var(--muted);margin-bottom:30px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);padding:24px;border-radius:18px}.icon{font-size:28px;margin-bottom:14px}.card h3{margin-bottom:8px}.card p{color:var(--muted);line-height:1.6;font-size:14px}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:25px}.price.featured{border-color:#8d52db;box-shadow:0 0 45px #8d52db20}.price h3{font-size:18px}.amount{font-size:34px;font-weight:900;margin:12px 0}.price p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:18px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:#777785;font-size:13px;text-align:center}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#fff;color:#111;padding:11px 16px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;font-weight:700}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.navlinks{display:none}.hero{padding-top:55px}h1{letter-spacing:-2px}.grid,.cards,.pricing{grid-template-columns:1fr}.tool{padding:17px}.section h2{font-size:29px}}
+</style>
+</head>
+<body>
+
+<nav class="container">
+  <a class="logo" href="#">Caption<span>AI</span> ✦</a>
+  <div class="navlinks">
+    <a href="#generator">Generator</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a class="navbtn" href="#generator">Try Free</a>
+</nav>
+
+<header class="hero container">
+  <div class="badge">✦ AI-powered creator toolkit</div>
+  <h1>Turn any post into a <span class="gradient">scroll-stopping caption.</span></h1>
+  <p>Generate captions, hashtags, hooks and calls-to-action in seconds. Built for creators, brands and anyone who wants better content.</p>
+  <a class="cta" href="#generator">✨ Create a Caption</a>
+</header>
+
+<section id="generator" class="container tool">
+  <div class="grid">
+    <div>
+      <label for="idea">What's your post about?</label>
+      <textarea id="idea" placeholder="Example: Sunset photo at Goa beach with my best friends..."></textarea>
+    </div>
+    <div class="controls">
+      <div><label for="tone">Tone</label>
+        <select id="tone"><option>Viral</option><option>Funny</option><option>Attitude</option><option>Aesthetic</option><option>Professional</option><option>Romantic</option><option>Motivational</option></select>
+      </div>
+      <div><label for="language">Language</label>
+        <select id="language"><option>English</option><option>Hinglish</option><option>Hindi</option></select>
+      </div>
+      <div><label for="length">Length</label>
+        <select id="length"><option>Short</option><option>Medium</option><option>Long</option></select>
+      </div>
+    </div>
+  </div>
+  <button class="generate" onclick="generate()">✨ Generate Captions</button>
+  <div id="results" class="results"></div>
+</section>
+
+<section id="features" class="section container">
+  <h2>Everything creators need</h2>
+  <p>More than a caption generator.</p>
+  <div class="cards">
+    <div class="card"><div class="icon">✍️</div><h3>Caption Generator</h3><p>Create captions matched to your post, tone and audience.</p></div>
+    <div class="card"><div class="icon">#️⃣</div><h3>Hashtag Ideas</h3><p>Get relevant hashtag suggestions to help organize your content strategy.</p></div>
+    <div class="card"><div class="icon">🚀</div><h3>Hooks & CTAs</h3><p>Generate opening hooks and calls-to-action for posts and reels.</p></div>
+  </div>
+</section>
+
+<section id="pricing" class="section container">
+  <h2>Simple pricing</h2>
+  <p>Start free. Upgrade when your audience grows.</p>
+  <div class="pricing">
+    <div class="price"><h3>Free</h3><div class="amount">₹0</div><p>5 generations/day<br>Basic tones<br>Basic hashtag ideas</p><button class="generate" onclick="document.querySelector('#generator').scrollIntoView()">Start Free</button></div>
+    <div class="price featured"><h3>Creator</h3><div class="amount">₹99<span style="font-size:14px">/mo</span></div><p>Unlimited generations<br>All tones & languages<br>Advanced creator tools</p><button class="generate" onclick="alert('Connect your payment gateway here.')">Go Pro</button></div>
+    <div class="price"><h3>Studio</h3><div class="amount">₹299<span style="font-size:14px">/mo</span></div><p>Everything in Creator<br>Brand content tools<br>Priority AI access</p><button class="generate" onclick="alert('Connect your payment gateway here.')">Choose Studio</button></div>
+  </div>
+</section>
+
+<footer>© 2026 CaptionAI · Built for creators · <span>Privacy</span> · <span>Terms</span></footer>
+<div id="toast" class="toast">Copied!</div>
+
+<script>
+const banks={
+  Viral:[
+    "POV: this moment deserved a spot on your feed. ✨",
+    "Main character energy, no explanation needed. 🔥",
+    "Proof that ordinary days can make extraordinary memories. 🚀"
+  ],
+  Funny:[
+    "I came, I saw, I took 47 photos. 😂",
+    "Posting this before I change my mind. 😭",
+    "My camera roll said this one deserves attention. 📸"
+  ],
+  Attitude:[
+    "Not here to fit in. I'm here to be remembered. 🖤",
+    "Energy speaks louder than captions. ⚡",
+    "Quietly doing my thing. Loudly making it count. 🔥"
+  ],
+  Aesthetic:[
+    "Golden light, soft moments, loud memories. ✨",
+    "A little pause from the beautiful chaos. 🌙",
+    "Collecting moments, not things. 🤍"
+  ],
+  Professional:[
+    "Building, learning and showing up—one step at a time. 💼",
+    "Small progress is still progress. Keep going. 🚀",
+    "Focused on the work. Grateful for the journey."
+  ],
+  Romantic:[
+    "Some moments feel better when they're shared. ❤️",
+    "You make ordinary moments feel like memories. ✨",
+    "My favorite place is wherever this moment takes us. 💕"
+  ],
+  Motivational:[
+    "Start where you are. Keep moving. 🚀",
+    "Discipline today. Results tomorrow. 💪",
+    "Your next chapter needs you to keep going. ✨"
+  ]
+};
+
+function generate(){
+  const idea=document.getElementById('idea').value.trim();
+  const tone=document.getElementById('tone').value;
+  const lang=document.getElementById('language').value;
+  const length=document.getElementById('length').value;
+  const box=document.getElementById('results');
+  if(!idea){box.innerHTML='<div class="result">⚠️ Pehle apne post ke baare mein kuch likho.</div>';return}
+  let arr=[...(banks[tone]||banks.Viral)];
+  if(lang==="Hinglish") arr=arr.map(x=>x+" — bas vibe important hai! 😎");
+  if(lang==="Hindi") arr=arr.map((x,i)=>["हर पल को यादगार बनाना है। ✨","आज का दिन, आज की याद। ❤️","खुद पर भरोसा रखो और आगे बढ़ते रहो। 🔥"][i]);
+  if(length==="Long") arr=arr.map(x=>x+" "+idea+" — creating memories, sharing the journey and enjoying every little moment. ✨");
+  if(length==="Short") arr=arr.map(x=>x.split(".")[0]+".");
+  arr=arr.slice(0,3);
+  box.innerHTML=arr.map((x,i)=>`<div class="result"><button class="copy" onclick="copyText(this)">Copy</button><strong>Caption ${i+1}</strong><br><br>${x}<br><br><span style="color:#a875ff">#instagram #reels #contentcreator #viral #trending</span></div>`).join("");
+}
+function copyText(btn){
+  const text=btn.parentElement.innerText.replace("Copy","").trim();
+  navigator.clipboard?.writeText(text);
+  const t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400);
+}
+</script>
+</body>
+</html>
